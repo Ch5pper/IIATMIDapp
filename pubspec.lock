@@ -131,6 +131,14 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "1.8.2"
+  pedometer:
+    dependency: "direct main"
+    description:
+      name: pedometer
+      sha256: "02c3f2de7449c7a97ba660ce1cf6779e803c465a1b7293fe9dd6b5c2be3cbbe5"
+      url: "https://pub.dev"
+    source: hosted
+    version: "1.2.5"
   sky_engine:
     dependency: transitive
     description: flutter
