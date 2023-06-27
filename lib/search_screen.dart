@@ -22,6 +22,18 @@ class SearchScreen extends StatefulWidget {
 class _SearchScreenState extends State<SearchScreen> {
   String _searchText = '';
   List<String> _searchResults = [];
+  Map<String, String> _workoutSecondaryText = {
+    'Push-ups': 'Secondary Text 1',
+    'Squats': 'Secondary Text 2',
+    'Sit-ups': 'Secondary Text 3',
+    'Lunges': 'Secondary Text 4',
+    'Plank': 'Secondary Text 5',
+    'Jumping Jacks': 'Secondary Text 6',
+    'Burpees': 'Secondary Text 7',
+    'Mountain Climbers': 'Secondary Text 8',
+    'High Knees': 'Secondary Text 9',
+    'Bicycle Crunches': 'Secondary Text 10',
+  };
 
   void _performSearch(String searchText) {
     setState(() {
@@ -50,7 +62,7 @@ class _SearchScreenState extends State<SearchScreen> {
           padding: const EdgeInsets.all(8.0),
           child: TextField(
             decoration: InputDecoration(
-              hintText: 'Zoek voor een workout...',
+              hintText: 'Search for a workout...',
               prefixIcon: Icon(Icons.search),
               border: OutlineInputBorder(
                 borderRadius: BorderRadius.circular(8),
@@ -63,10 +75,13 @@ class _SearchScreenState extends State<SearchScreen> {
           child: ListView.builder(
             itemCount: _searchResults.length,
             itemBuilder: (context, index) {
+              final workoutName = _searchResults[index];
+              final secondaryText = _workoutSecondaryText[workoutName] ?? '';
+
               return ListTile(
-                title: Text(_searchResults[index]),
+                title: Text(workoutName),
+                subtitle: Text(secondaryText),
                 onTap: () {
-                  String workoutName = _searchResults[index];
                   _navigateToWorkoutDetails(workoutName);
                 },
               );

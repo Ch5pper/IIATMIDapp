@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:pedometer/pedometer.dart';
 
 class ProfileScreen extends StatelessWidget {
   final List<String> completedWorkouts = [];

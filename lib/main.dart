@@ -82,7 +82,7 @@ class _ScaffoldExampleState extends State<ScaffoldExample> {
           ),
           BottomNavigationBarItem(
             icon: Icon(Icons.person),
-            label: 'Profiel',
+            label: 'Dashboard',
           ),
         ],
         currentIndex: _selectedIndex,
