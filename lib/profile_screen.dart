@@ -1,17 +1,49 @@
+import 'dart:async';
 import 'package:flutter/material.dart';
+import 'package:pedometer/pedometer.dart';
 
-class ProfileScreen extends StatelessWidget {
+class ProfileScreen extends StatefulWidget {
+  @override
+  _ProfileScreenState createState() => _ProfileScreenState();
+}
+
+class _ProfileScreenState extends State<ProfileScreen> {
   final List<String> completedInformation = [
-    'Heart Rate',
-    'Sleep Duration',
-    'Step Count',
+    'Hartslag',
+    'Slaap',
+    'Stappen',
   ];
 
   final List<String> dataValues = [
     '80 bpm',
-    '7 hours',
-    '10,000 steps',
+    '7 uur',
+    '10,000 stappen',
   ];
+
+  String stepCount = '0';
+  StreamSubscription<int>? _subscription;
+
+  @override
+  void initState() {
+    super.initState();
+    startListening();
+  }
+
+  void startListening() {
+    Pedometer.stepCountStream.listen((stepCountValue) {
+      setState(() {
+        stepCount = stepCountValue.toString();
+      });
+    }).onError((error) {
+      print("Pedometer Error: $error");
+    });
+  }
+
+  @override
+  void dispose() {
+    _subscription?.cancel();
+    super.dispose();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -43,7 +75,7 @@ class ProfileScreen extends StatelessWidget {
                     children: [
                       SizedBox(height: 16),
                       Text(
-                        'Dashboard',
+                        'progressie: haal 10.000 stappen',
                         style: TextStyle(fontSize: 20, color: Colors.blue),
                       ),
                       SizedBox(height: 16),
@@ -54,14 +86,14 @@ class ProfileScreen extends StatelessWidget {
                             width: 120,
                             height: 120,
                             child: CircularProgressIndicator(
-                              value: 0.6, // Set the progress value (between 0.0 and 1.0)
+                              value: double.parse(stepCount) / 10000,
                               strokeWidth: 10,
                               valueColor: AlwaysStoppedAnimation<Color>(Colors.blue),
                               backgroundColor: Colors.grey,
                             ),
                           ),
                           Text(
-                            '60%',
+                            '${(double.parse(stepCount) / 10000 * 100).toStringAsFixed(0)}%',
                             style: TextStyle(fontSize: 24, color: Colors.blue),
                           ),
                         ],
@@ -86,7 +118,10 @@ class ProfileScreen extends StatelessWidget {
                     ),
                   ],
                 ),
-
+                child: ListTile(
+                  title: Text('Stappen'),
+                  subtitle: Text('$stepCount stappen'),
+                ),
               ),
               SizedBox(height: 16),
               Container(
@@ -104,16 +139,22 @@ class ProfileScreen extends StatelessWidget {
                     ),
                   ],
                 ),
-                child: ListView.builder(
-                  shrinkWrap: true,
-                  physics: NeverScrollableScrollPhysics(),
-                  itemCount: completedInformation.length,
-                  itemBuilder: (context, index) {
-                    return ListTile(
-                      title: Text(completedInformation[index]),
-                      subtitle: Text(dataValues[index]),
-                    );
-                  },
+                child: Column(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    Text(
+                      'Uitleg',
+                      style: TextStyle(fontSize: 20, color: Colors.blue),
+                    ),
+                    SizedBox(height: 16),
+                    Padding(
+                      padding: const EdgeInsets.all(16.0),
+                      child: Text(
+                        'De stappenteller registreert het aantal stappen dat je neemt gedurende de dag. Het is belangrijk om dagelijks meer dan 5000 stappen te zetten. Probeer 10.000 stappen te halen.',
+                        textAlign: TextAlign.center,
+                      ),
+                    ),
+                  ],
                 ),
               ),
             ],

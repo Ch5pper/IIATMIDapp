@@ -1,9 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:carousel_slider/carousel_slider.dart';
 import 'package:perryapp/home_screen.dart';
 import 'package:perryapp/search_screen.dart';
 import 'package:perryapp/profile_screen.dart';
-import 'package:perryapp/workout_details_screen.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
 
 void main() => runApp(const ScaffoldExampleApp());
 
