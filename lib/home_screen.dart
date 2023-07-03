@@ -26,16 +26,16 @@ class _HomeScreenState extends State<HomeScreen> {
   ];
 
   Map<String, int> workoutDurations = {
-    'Push-ups': 5,
-    'Squats': 7,
-    'Sit-ups': 3,
-    'Lunges': 8,
-    'Plank': 4,
-    'Jumping Jacks': 6,
-    'Burpees': 9,
-    'Mountain Climbers': 7,
-    'Pull-ups': 10,
-    'Pistol squat': 12,
+    'Push-ups': 30,
+    'Squats': 15,
+    'Sit-ups': 15,
+    'Lunges': 20,
+    'Plank': 2,
+    'Jumping Jacks': 12,
+    'Burpees': 10,
+    'Mountain Climbers': 10,
+    'Pull-ups': 5,
+    'Pistol squat': 5,
   };
 
   List<String> completedWorkouts = [];
@@ -227,7 +227,7 @@ class _HomeScreenState extends State<HomeScreen> {
                               child: Column(
                                 children: [
                                   Text(
-                                    'Quote van vandaag',
+                                    'Inspiratie',
                                     style: TextStyle(fontSize: 20, color: Colors.blue),
                                   ),
                                   SizedBox(height: 8),
@@ -291,7 +291,7 @@ class _HomeScreenState extends State<HomeScreen> {
               ),
               SizedBox(height: 16),
               Container(
-                height: 200,
+                height: 220,
                 child: CarouselSlider(
                   options: CarouselOptions(
                     aspectRatio: 16 / 9,
@@ -307,7 +307,7 @@ class _HomeScreenState extends State<HomeScreen> {
                           child: ClipRRect(
                             borderRadius: BorderRadius.circular(8.0),
                             child: Card(
-                              color: Colors.blue,
+                              color: Colors.white,
                               child: InkWell(
                                 onTap: () {
                                   String workoutName = workout;
@@ -316,7 +316,7 @@ class _HomeScreenState extends State<HomeScreen> {
                                     MaterialPageRoute(
                                       builder: (context) => WorkoutDetailsScreen(
                                         workoutName: workoutName,
-                                        description: 'Description of $workoutName',
+                                        description: 'Zoek in de zoekpagina naar $workoutName en lees meer over jou favoriete oefeningen, zodat jij kan gaan werken aan een betere versie van jezelf.',
                                       ),
                                     ),
                                   );
@@ -329,14 +329,14 @@ class _HomeScreenState extends State<HomeScreen> {
                                         alignment: Alignment.topCenter,
                                         child: Text(
                                           workout,
-                                          style: TextStyle(fontSize: 24.0, color: Colors.white),
+                                          style: TextStyle(fontSize: 24.0, color: Colors.blue),
                                         ),
                                       ),
                                     ),
                                     Image.network(
-                                      'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ1eB3klkz4zfss4fwdszfl1W40sYI2vdWWPQ&usqp=CAU',
+                                      'https://upload.wikimedia.org/wikipedia/commons/thumb/8/8c/Man_Tired_After_Workout_Cartoon.svg/2560px-Man_Tired_After_Workout_Cartoon.svg.png',
                                       width: MediaQuery.of(context).size.width,
-                                      height: 130,
+                                      height: 150,
                                       fit: BoxFit.cover,
                                     ),
                                   ],

@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:perryapp/home_screen.dart';
 import 'package:perryapp/search_screen.dart';
 import 'package:perryapp/profile_screen.dart';
-import 'package:cloud_firestore/cloud_firestore.dart';
 
 void main() => runApp(const ScaffoldExampleApp());
 
@@ -80,7 +79,7 @@ class _ScaffoldExampleState extends State<ScaffoldExample> {
             label: 'Zoeken',
           ),
           BottomNavigationBarItem(
-            icon: Icon(Icons.person),
+            icon: Icon(Icons.dashboard),
             label: 'Dashboard',
           ),
         ],
